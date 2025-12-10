@@ -30,20 +30,30 @@ export function GPURecommendations({ requiredMemoryGB, title }: GPURecommendatio
     return getMultiGPURecommendations(requiredMemoryGB).slice(0, 8);
   }, [requiredMemoryGB, enableMultiGPU]);
 
-  // 按适合度和价格排序单卡推荐
+  // 按适合度和专业性排序单卡推荐
   const sortedRecommendations = useMemo(() => {
     return recommendations
       .map(gpu => ({
         ...gpu,
         usage: assessMemoryUsage(requiredMemoryGB, gpu.memory),
-        fitScore: gpu.memory >= requiredMemoryGB ? 
+        fitScore: gpu.memory >= requiredMemoryGB ?
           (100 - ((gpu.memory - requiredMemoryGB) / gpu.memory) * 50) : 0
       }))
       .sort((a, b) => {
         // 首先按是否满足需求排序
         if (a.fitScore > 0 && b.fitScore === 0) return -1;
         if (a.fitScore === 0 && b.fitScore > 0) return 1;
-        
+
+        // 对于大显存需求，优先推荐专业级GPU
+        const isLargeMemoryRequirement = requiredMemoryGB > 50;
+        if (isLargeMemoryRequirement) {
+          const aProfessional = ['h200', 'h100-80gb', 'h800', 'a100-80gb', 'a100-40gb', 'l40s', 'rtx6000-ada', 'rtx-a6000'].includes(a.id);
+          const bProfessional = ['h200', 'h100-80gb', 'h800', 'a100-80gb', 'a100-40gb', 'l40s', 'rtx6000-ada', 'rtx-a6000'].includes(b.id);
+
+          if (aProfessional && !bProfessional) return -1;
+          if (!aProfessional && bProfessional) return 1;
+        }
+
         // 然后按利用率排序（70-90%为最佳）
         const aOptimal = Math.abs(a.usage.utilizationRate - 80);
         const bOptimal = Math.abs(b.usage.utilizationRate - 80);

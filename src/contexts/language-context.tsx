@@ -16,9 +16,9 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 const translations = {
   zh: {
     // Header
-    'header.title': 'Wuhr AI VRAM Insight',
+    'header.title': '显存与性能计算器',
     'header.description': '专业的AI模型显存需求计算工具，支持训练、推理、微调三种模式，基于最新工程实践的精确计算公式，为您的GPU选型和部署规划提供专业指导',
-    
+
     // Navigation
     'nav.history': '历史记录',
     'nav.presets': '预设',
@@ -26,7 +26,7 @@ const translations = {
     'nav.shortcuts': '快捷键',
     'nav.compare': '对比列表',
     'nav.language': '语言',
-    
+
     // Tabs
     'tabs.nlp': 'NLP/语言模型',
     'tabs.multimodal': '多模态模型',
@@ -35,7 +35,7 @@ const translations = {
     'tabs.finetuning': '微调显存',
     'tabs.training': '训练显存',
     'tabs.grpo': 'GRPO',
-    
+
     // Features
     'feature.precise': '精确计算公式',
     'feature.precise.desc': '基于最新AI工程实践，支持混合精度、梯度检查点、量化等优化技术的精确显存计算',
@@ -43,7 +43,7 @@ const translations = {
     'feature.models.desc': '涵盖Qwen、DeepSeek、Llama、ChatGLM等热门模型，参数规格实时更新',
     'feature.gpu': '智能GPU推荐',
     'feature.gpu.desc': '基于显存需求自动匹配最适合的GPU，包含价格对比和利用率分析',
-    
+
     // Footer
     'footer.description': 'AI显存计算器 • 专业GPU显存需求分析工具 • 基于最新AI工程实践',
     'footer.features': '支持训练、推理、微调三种场景 • 130+模型数据库 • 20+GPU规格对比',
@@ -53,7 +53,7 @@ const translations = {
     'footer.contact': '联系我们',
     'footer.github': 'GitHub开源',
     'footer.made': 'Made with ❤️ by',
-    
+
     // GPU Recommendations
     'gpu.recommendations': 'GPU推荐',
     'gpu.scenario': '场景',
@@ -101,7 +101,7 @@ const translations = {
     'gpu.price.mid.range': '中端',
     'gpu.price.high.end': '高端',
     'gpu.price.enterprise': '企业级',
-    
+
     // Inference Calculator
     'inference.config': '推理配置',
     'inference.memory.requirement': '推理显存',
@@ -111,11 +111,11 @@ const translations = {
     'inference.long.sequence.suggestion': '长序列推理建议降低KV缓存比例以节省显存',
     'inference.large.batch.suggestion': '大批次推理可提高吞吐量，但需要更多显存',
     'inference.large.model.suggestion': '大模型推理强烈建议使用量化以减少显存需求',
-    
+
     // Training Calculator
     'training.config': '训练配置',
     'training.mixed.precision': '混合精度训练',
-    
+
     // Fine-tuning Calculator
     'finetuning.config': '微调配置',
     'finetuning.method': '微调方法',
@@ -371,7 +371,7 @@ const translations = {
     'model.size.reduction.87.5': '模型大小减少约87.5%',
     'optimization.suggestions': '优化建议',
     'use.int8.quantization': '使用INT8量化可减少75%的模型显存，对精度影响很小',
-    
+
     // Training Calculator
     'model.parameters.count': '模型参数量',
     'optimizer': '优化器',
@@ -384,7 +384,7 @@ const translations = {
     'enable.gradient.checkpointing': '开启梯度检查点可减少约70%的激活值显存',
     'use.fp16.bf16': '使用FP16或BF16可减少约50%的参数和梯度显存',
     'large.model.sgd': '大模型建议考虑SGD优化器以减少优化器状态显存',
-    
+
     // Fine-tuning Calculator specific
     'base.model': '基础模型',
     'small.model.3b': '小模型 (≤3B)',
@@ -406,7 +406,7 @@ const translations = {
     'large.model.use.quantization': '大模型建议使用量化以减少基础模型显存占用',
     'qlora.needs.quantization': 'QLoRA方法需要配合量化使用才能发挥优势',
     'alpha.rank.ratio.too.small': 'Alpha/Rank比值过小，可能导致学习率过低，建议增大Alpha',
-    
+
     // History Panel
     'calculation.history': '计算历史',
     'history.records': '历史记录',
@@ -422,7 +422,7 @@ const translations = {
     'select.from.history': '从历史记录中选择配置进行对比',
     'max.4.configs': '最多可以对比 4 个配置',
     'load.config': '加载配置',
-    
+
     // Config Presets Panel
     'config.preset.templates': '配置预设模板',
     'quick.start.project': '选择预设配置快速开始您的',
@@ -438,10 +438,10 @@ const translations = {
     'apply.config': '应用配置',
     'no.matching.presets': '未找到匹配的预设配置',
     'try.adjust.search': '尝试调整搜索条件或分类筛选',
-    
+
     // Multimodal Calculator
     'multimodal.config': '多模态微调配置',
-    'multimodal.training.config': '多模态训练配置', 
+    'multimodal.training.config': '多模态训练配置',
     'multimodal.inference.config': '多模态推理配置',
     'multimodal.finetuning.config': '多模态微调配置',
     'multimodal.modality.type': '模态类型',
@@ -479,37 +479,37 @@ const translations = {
     'multimodal.memory.requirement': '多模态训练显存需求',
     'multimodal.memory.requirement.inference': '多模态推理显存需求',
     'multimodal.memory.requirement.finetuning': '多模态微调显存需求',
-    
+
     // Resolution options
     'resolution.224': '224x224 (标准)',
     'resolution.336': '336x336 (中等)',
     'resolution.448': '448x448 (高清)',
     'resolution.512': '512x512 (超清)',
-    
+
     // Patch size options
     'patch.14': '14x14 (细粒度)',
     'patch.16': '16x16 (标准)',
     'patch.32': '32x32 (粗粒度)',
-    
+
     // Sample rate options
     'samplerate.16k': '16kHz (语音)',
     'samplerate.22k': '22.05kHz (高质量语音)',
     'samplerate.44k': '44.1kHz (CD质量)',
     'samplerate.48k': '48kHz (专业音频)',
-    
+
     // Frame rate options
     'framerate.10': '10 FPS (低帧率)',
     'framerate.15': '15 FPS (中等)',
     'framerate.25': '25 FPS (标准)',
     'framerate.30': '30 FPS (高帧率)',
     'framerate.60': '60 FPS (超高帧率)',
-    
+
     // Precision options
     'precision.fp32': 'FP32 (32位浮点)',
     'precision.fp16': 'FP16 (16位浮点)',
     'precision.bf16': 'BF16 (Brain Float)',
     'precision.fp8': 'FP8 (8位浮点)',
-    
+
     // Memory analysis
     'memory.total.requirement': '总显存需求',
     'memory.breakdown': '显存分解',
@@ -522,13 +522,13 @@ const translations = {
     'multimodal.features.vision.shared': '视觉编码器可选独立或共享参数',
     'multimodal.features.audio.spectrum': '音频编码器处理频谱特征',
     'multimodal.features.cache': '多模态特征缓存用于加速推理',
-    
+
     // Mode terms
     'mode.training': '训练',
     'mode.inference': '推理',
     'mode.finetuning': '微调',
     'mode.multimodal': '多模态',
-    
+
     // GRPO Calculator
     'grpo.config': 'GRPO配置',
     'grpo.preset.model': '预设模型',
@@ -552,7 +552,7 @@ const translations = {
     'grpo.features.8bit.optimizer': '支持8位优化器降低内存使用',
     'grpo.features.gradient.checkpointing': '梯度检查点可节省70%激活值内存',
     'grpo.features.memory.saving': '比PPO节省约40-60%显存',
-    
+
     // Loading
     'loading': '加载中...',
     'loading.history': '加载历史记录...',
@@ -560,9 +560,9 @@ const translations = {
   },
   en: {
     // Header
-    'header.title': 'Wuhr AI VRAM Insight',
+    'header.title': 'VRAM and Performance Calculator',
     'header.description': 'Professional GPU memory requirement calculator for AI models, supporting training, inference, and fine-tuning modes with precise formulas based on latest engineering practices',
-    
+
     // Navigation
     'nav.history': 'History',
     'nav.presets': 'Presets',
@@ -570,7 +570,7 @@ const translations = {
     'nav.shortcuts': 'Shortcuts',
     'nav.compare': 'Compare List',
     'nav.language': 'Language',
-    
+
     // Tabs
     'tabs.nlp': 'NLP/Language Models',
     'tabs.multimodal': 'Multimodal Models',
@@ -579,7 +579,7 @@ const translations = {
     'tabs.finetuning': 'Fine-tuning VRAM',
     'tabs.training': 'Training VRAM',
     'tabs.grpo': 'GRPO',
-    
+
     // Features
     'feature.precise': 'Precise Calculation Formulas',
     'feature.precise.desc': 'Based on latest AI engineering practices, supporting mixed precision, gradient checkpointing, quantization and other optimization techniques',
@@ -587,7 +587,7 @@ const translations = {
     'feature.models.desc': 'Covering popular models like Qwen, DeepSeek, Llama, ChatGLM with real-time parameter specifications',
     'feature.gpu': 'Intelligent GPU Recommendations',
     'feature.gpu.desc': 'Automatically match the most suitable GPUs based on VRAM requirements, including price comparison and utilization analysis',
-    
+
     // Footer
     'footer.description': 'AI VRAM Calculator • Professional GPU Memory Analysis Tool • Based on Latest AI Engineering Practices',
     'footer.features': 'Supporting Training, Inference, Fine-tuning Scenarios • 130+ Model Database • 20+ GPU Specifications',
@@ -597,7 +597,7 @@ const translations = {
     'footer.contact': 'Contact Us',
     'footer.github': 'GitHub Source',
     'footer.made': 'Made with ❤️ by',
-    
+
     // GPU Recommendations
     'gpu.recommendations': 'GPU Recommendations',
     'gpu.scenario': 'Scenario',
@@ -645,7 +645,7 @@ const translations = {
     'gpu.price.mid.range': 'Mid-range',
     'gpu.price.high.end': 'High-end',
     'gpu.price.enterprise': 'Enterprise',
-    
+
     // Inference Calculator
     'inference.config': 'Inference Configuration',
     'inference.memory.requirement': 'Inference VRAM',
@@ -655,11 +655,11 @@ const translations = {
     'inference.long.sequence.suggestion': 'For long sequences, consider reducing KV cache ratio to save VRAM',
     'inference.large.batch.suggestion': 'Large batch inference improves throughput but requires more VRAM',
     'inference.large.model.suggestion': 'Quantization is strongly recommended for large model inference to reduce VRAM requirements',
-    
+
     // Training Calculator
     'training.config': 'Training Configuration',
     'training.mixed.precision': 'Mixed Precision Training',
-    
+
     // Fine-tuning Calculator
     'finetuning.config': 'Fine-tuning Configuration',
     'finetuning.method': 'Fine-tuning Method',
@@ -915,7 +915,7 @@ const translations = {
     'model.size.reduction.87.5': 'Model size reduced by approximately 87.5%',
     'optimization.suggestions': 'Optimization Suggestions',
     'use.int8.quantization': 'Using INT8 quantization can reduce model VRAM by 75% with minimal accuracy impact',
-    
+
     // Training Calculator
     'model.parameters.count': 'Model Parameters Count',
     'optimizer': 'Optimizer',
@@ -928,7 +928,7 @@ const translations = {
     'enable.gradient.checkpointing': 'Enable gradient checkpointing to reduce activation memory by ~70%',
     'use.fp16.bf16': 'Using FP16 or BF16 can reduce parameter and gradient memory by ~50%',
     'large.model.sgd': 'For large models, consider SGD optimizer to reduce optimizer state memory',
-    
+
     // Fine-tuning Calculator specific
     'base.model': 'Base Model',
     'small.model.3b': 'Small Models (≤3B)',
@@ -950,7 +950,7 @@ const translations = {
     'large.model.use.quantization': 'For large models, recommend using quantization to reduce base model memory usage',
     'qlora.needs.quantization': 'QLoRA method needs to be used with quantization to achieve its advantages',
     'alpha.rank.ratio.too.small': 'Alpha/Rank ratio too small, may lead to low learning rate, consider increasing Alpha',
-    
+
     // History Panel
     'calculation.history': 'Calculation History',
     'history.records': 'History Records',
@@ -966,7 +966,7 @@ const translations = {
     'select.from.history': 'Select configurations from history for comparison',
     'max.4.configs': 'Maximum 4 configurations can be compared',
     'load.config': 'Load Config',
-    
+
     // Config Presets Panel
     'config.preset.templates': 'Configuration Preset Templates',
     'quick.start.project': 'Select preset configuration to quickly start your',
@@ -982,7 +982,7 @@ const translations = {
     'apply.config': 'Apply Config',
     'no.matching.presets': 'No matching preset configurations found',
     'try.adjust.search': 'Try adjusting search criteria or category filters',
-    
+
     // Multimodal Calculator
     'multimodal.config': 'Multimodal Fine-tuning Configuration',
     'multimodal.training.config': 'Multimodal Training Configuration',
@@ -1023,37 +1023,37 @@ const translations = {
     'multimodal.memory.requirement': 'Multimodal Training VRAM Requirement',
     'multimodal.memory.requirement.inference': 'Multimodal Inference VRAM Requirement',
     'multimodal.memory.requirement.finetuning': 'Multimodal Fine-tuning VRAM Requirement',
-    
+
     // Resolution options
     'resolution.224': '224x224 (Standard)',
     'resolution.336': '336x336 (Medium)',
     'resolution.448': '448x448 (High)',
     'resolution.512': '512x512 (Ultra)',
-    
+
     // Patch size options
     'patch.14': '14x14 (Fine-grained)',
     'patch.16': '16x16 (Standard)',
     'patch.32': '32x32 (Coarse-grained)',
-    
+
     // Sample rate options
     'samplerate.16k': '16kHz (Speech)',
     'samplerate.22k': '22.05kHz (High-quality Speech)',
     'samplerate.44k': '44.1kHz (CD Quality)',
     'samplerate.48k': '48kHz (Professional Audio)',
-    
+
     // Frame rate options
     'framerate.10': '10 FPS (Low)',
     'framerate.15': '15 FPS (Medium)',
     'framerate.25': '25 FPS (Standard)',
     'framerate.30': '30 FPS (High)',
     'framerate.60': '60 FPS (Ultra High)',
-    
+
     // Precision options
     'precision.fp32': 'FP32 (32-bit)',
     'precision.fp16': 'FP16 (16-bit)',
     'precision.bf16': 'BF16 (Brain Float)',
     'precision.fp8': 'FP8 (8-bit)',
-    
+
     // Memory analysis
     'memory.total.requirement': 'Total VRAM Requirement',
     'memory.breakdown': 'Memory Breakdown',
@@ -1066,13 +1066,13 @@ const translations = {
     'multimodal.features.vision.shared': 'Vision encoder can be independent or share parameters',
     'multimodal.features.audio.spectrum': 'Audio encoder processes spectral features',
     'multimodal.features.cache': 'Multimodal feature caching for inference acceleration',
-    
+
     // Mode terms
     'mode.training': 'Training',
     'mode.inference': 'Inference',
     'mode.finetuning': 'Fine-tuning',
     'mode.multimodal': 'Multimodal',
-    
+
     // GRPO Calculator
     'grpo.config': 'GRPO Configuration',
     'grpo.preset.model': 'Preset Model',
@@ -1096,7 +1096,7 @@ const translations = {
     'grpo.features.8bit.optimizer': 'Supports 8-bit optimizer to reduce memory usage',
     'grpo.features.gradient.checkpointing': 'Gradient checkpointing saves 70% activation memory',
     'grpo.features.memory.saving': 'Saves approximately 40-60% VRAM compared to PPO',
-    
+
     // Loading
     'loading': 'Loading...',
     'loading.history': 'Loading history...',
@@ -1128,7 +1128,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem('language', lang);
     // 更新 HTML lang 属性
     document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en-US';
-    
+
     // 触发自定义事件，通知需要重新计算
     window.dispatchEvent(new CustomEvent('languageChanged', { detail: lang }));
   };
@@ -1157,4 +1157,4 @@ export function useLanguage() {
     throw new Error('useLanguage must be used within a LanguageProvider');
   }
   return context;
-} 
+}

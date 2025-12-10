@@ -1161,7 +1161,7 @@ export const GPU_DATABASE: GPU[] = [
   },
   {
     id: 'a100-80gb',
-    name: 'A100 SXM',
+    name: 'A100 SXM 80GB',
     memory: 80,
     architecture: 'Ampere',
     computeCapability: '8.0',
@@ -1463,21 +1463,33 @@ export function getMultiGPURecommendations(requiredMemoryGB: number): MultiGPUCo
     }
   }
   
-  // 排序：优先考虑成本效益和实用性
+  // 排序：优先考虑实用性和专业性
   return recommendations
     .filter(config => config.totalMemory >= requiredMemoryGB)
     .sort((a, b) => {
+      // 大显存需求（>100GB）时，优先推荐专业级GPU
+      const isLargeMemoryRequirement = requiredMemoryGB > 100;
+
+      if (isLargeMemoryRequirement) {
+        // 专业级GPU优先级（A100, H100, H200, L40S 等）
+        const aProfessional = ['h200', 'h100-80gb', 'h800', 'a100-80gb', 'a100-40gb', 'l40s', 'rtx6000-ada', 'rtx-a6000'].includes(a.gpu.id);
+        const bProfessional = ['h200', 'h100-80gb', 'h800', 'a100-80gb', 'a100-40gb', 'l40s', 'rtx6000-ada', 'rtx-a6000'].includes(b.gpu.id);
+
+        if (aProfessional && !bProfessional) return -1;
+        if (!aProfessional && bProfessional) return 1;
+      }
+
       // 计算成本效益（每GB显存的成本）
       const aCostPerGB = a.totalCost / a.totalMemory;
       const bCostPerGB = b.totalCost / b.totalMemory;
-      
-      // 优先推荐成本效益好的配置
-      if (Math.abs(aCostPerGB - bCostPerGB) > 50) {
-        return aCostPerGB - bCostPerGB;
+
+      // 优先推荐机器数量少的（更简单的部署）
+      if (a.numNodes !== b.numNodes) {
+        return a.numNodes - b.numNodes;
       }
-      
-      // 成本相近时，优先推荐机器数量少的
-      return a.numNodes - b.numNodes;
+
+      // 然后考虑成本效益
+      return aCostPerGB - bCostPerGB;
     })
     .slice(0, 20); // 最多返回20个推荐
 }

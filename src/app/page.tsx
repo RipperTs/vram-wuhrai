@@ -21,25 +21,25 @@ import { GPURecommendations } from '@/components/gpu-recommendations';
 // 懒加载计算器组件
 const TrainingCalculator = dynamic(
   () => import('@/components/calculators/training-calculator').then(mod => ({ default: mod.TrainingCalculator })),
-  { 
+  {
     loading: () => <div className="glass-card p-8 text-center">Loading...</div>,
-    ssr: false 
+    ssr: false
   }
 );
 
 const InferenceCalculator = dynamic(
   () => import('@/components/calculators/inference-calculator').then(mod => ({ default: mod.InferenceCalculator })),
-  { 
+  {
     loading: () => <div className="glass-card p-8 text-center">Loading...</div>,
-    ssr: false 
+    ssr: false
   }
 );
 
 const FineTuningCalculator = dynamic(
   () => import('@/components/calculators/fine-tuning-calculator').then(mod => ({ default: mod.FineTuningCalculator })),
-  { 
+  {
     loading: () => <div className="glass-card p-8 text-center">Loading...</div>,
-    ssr: false 
+    ssr: false
   }
 );
 
@@ -61,9 +61,9 @@ const AdvancedFineTuningCalculator = dynamic(
 
 const MultimodalCalculator = dynamic(
   () => import('@/components/calculators/multimodal-calculator').then(mod => ({ default: mod.MultimodalCalculator })),
-  { 
+  {
     loading: () => <div className="glass-card p-8 text-center">Loading...</div>,
-    ssr: false 
+    ssr: false
   }
 );
 
@@ -77,18 +77,18 @@ const SettingsPanel = dynamic(() => import('@/components/settings-panel'), {
 });
 
 export default function Home() {
-  const { 
+  const {
     primaryTab,
     setPrimaryTab,
-    activeTab, 
-    setActiveTab, 
-    getCurrentResult, 
+    activeTab,
+    setActiveTab,
+    getCurrentResult,
     history,
     compareList,
     multimodalConfig,
     setMultimodalConfig
   } = useCalculatorStore();
-  
+
   const [showHistory, setShowHistory] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [showKeyboardHelp, setShowKeyboardHelp] = useState(false);
@@ -96,11 +96,11 @@ export default function Home() {
   const { toggleTheme } = useTheme();
   const { t } = useLanguage();
   // const { isMobile, isTablet } = useResponsive();
-  
+
   // 错误处理和性能监控
   const errorHandler = useErrorHandler();
   const performanceMonitor = usePerformanceMonitor();
-  
+
   // 配置键盘快捷键
   const shortcuts = getDefaultShortcuts({
     showHistory: () => {
@@ -146,9 +146,9 @@ export default function Home() {
       performanceMonitor.recordInteraction();
     }
   });
-  
+
   useKeyboardShortcuts(shortcuts);
-  
+
   // 监听语言切换事件，重新计算以更新Memory Breakdown标签
   useEffect(() => {
     const handleLanguageChange = () => {
@@ -175,11 +175,11 @@ export default function Home() {
         }
       }, 100);
     };
-    
+
     window.addEventListener('languageChanged', handleLanguageChange);
     return () => window.removeEventListener('languageChanged', handleLanguageChange);
   }, [primaryTab, activeTab]);
-  
+
   const currentResult = getCurrentResult();
   const requiredMemoryGB = currentResult ? currentResult.total : 25;
 
@@ -190,11 +190,11 @@ export default function Home() {
       <div className="floating-orb floating-orb-2"></div>
       <div className="floating-orb floating-orb-3"></div>
       <div className="floating-orb floating-orb-4"></div>
-      
+
       {/* 主要内容 */}
       <div className="container mx-auto px-4 py-8 relative z-10">
         {/* Header */}
-        <motion.header 
+        <motion.header
           className="text-center mb-12"
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -211,7 +211,7 @@ export default function Home() {
           <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
             {t('header.description')}
           </p>
-          
+
           {/* 工具栏 */}
           <div className="flex items-center justify-center gap-2 md:gap-4 mt-8">
             <button
@@ -226,7 +226,7 @@ export default function Home() {
                 </span>
               )}
             </button>
-            
+
             <button
               onClick={() => {
                 setShowPresets(true);
@@ -237,7 +237,7 @@ export default function Home() {
               <Star className="w-4 h-4" />
               <span className="hidden md:inline">{t('nav.presets')}</span>
             </button>
-            
+
             <button
               onClick={() => setShowSettings(true)}
               className="glass-button flex items-center gap-1 md:gap-2"
@@ -245,7 +245,7 @@ export default function Home() {
               <Settings className="w-4 h-4" />
               <span>{t('nav.settings')}</span>
             </button>
-            
+
             <button
               onClick={() => setShowKeyboardHelp(true)}
               className="glass-button flex items-center gap-1 md:gap-2"
@@ -254,21 +254,11 @@ export default function Home() {
               <Keyboard className="w-4 h-4" />
               <span className="hidden md:inline">{t('nav.shortcuts')}</span>
             </button>
-            
+
             <LanguageToggle />
-            
+
             <SimpleThemeToggle />
-            
-            <a
-              href="https://github.com/st-lzh/vram-wuhrai"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="glass-button p-3 rounded-xl"
-              title="GitHub Repository"
-            >
-              <Github className="w-5 h-5" />
-            </a>
-            
+
             {compareList.length > 0 && (
               <button
                 onClick={() => setShowHistory(true)}
@@ -463,7 +453,7 @@ export default function Home() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.8 }}
         >
-          <GPURecommendations 
+          <GPURecommendations
             requiredMemoryGB={requiredMemoryGB}
             title={`${
               primaryTab === 'nlp' ? t('tabs.nlp') : t('tabs.multimodal')
@@ -531,62 +521,38 @@ export default function Home() {
             <p className="text-xs text-gray-500 mt-2">
               {t('footer.features')}
             </p>
-            <div className="mt-4 flex justify-center items-center gap-4 text-xs">
-              <a href="https://wuhrai.com" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600 transition-colors">
-                {t('footer.blog')}
-              </a>
-              <span className="text-gray-300 dark:text-gray-600">|</span>
-              <a href="https://ai.wuhrai.com" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600 transition-colors">
-                {t('footer.api')}
-              </a>
-              <span className="text-gray-300 dark:text-gray-600">|</span>
-              <a href="https://gpt.wuhrai.com" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600 transition-colors">
-                {t('footer.chat')}
-              </a>
-              <span className="text-gray-300 dark:text-gray-600">|</span>
-              <a href="https://github.com/st-lzh/vram-wuhrai.git" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600 transition-colors">
-                {t('footer.github')}
-              </a>
-              <span className="text-gray-300 dark:text-gray-600">|</span>
-              <a href="mailto:1139804291@qq.com" className="text-blue-500 hover:text-blue-600 transition-colors">
-                {t('footer.contact')}
-              </a>
-            </div>
-            <p className="text-xs text-gray-400 mt-3">
-              {t('footer.made')} <a href="https://wuhrai.com" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">Wuhr AI Team</a>
-            </p>
           </div>
-        </motion.footer>
+        </motion.footer>w
       </div>
-      
+
       {/* 历史记录面板 */}
-      <HistoryPanel 
-        isOpen={showHistory} 
-        onClose={() => setShowHistory(false)} 
+      <HistoryPanel
+        isOpen={showHistory}
+        onClose={() => setShowHistory(false)}
       />
-      
+
       {/* 设置面板 */}
-      <SettingsPanel 
-        isOpen={showSettings} 
-        onClose={() => setShowSettings(false)} 
+      <SettingsPanel
+        isOpen={showSettings}
+        onClose={() => setShowSettings(false)}
       />
-      
+
       {/* 键盘快捷键帮助面板 */}
-      <KeyboardShortcutsHelp 
+      <KeyboardShortcutsHelp
         isOpen={showKeyboardHelp}
         onClose={() => setShowKeyboardHelp(false)}
         shortcuts={shortcuts}
       />
-      
+
       {/* 配置预设面板 */}
-      <ConfigPresetsPanel 
+      <ConfigPresetsPanel
         isOpen={showPresets}
         onClose={() => setShowPresets(false)}
         currentType={activeTab}
       />
-      
+
       {/* 错误通知 */}
-      <ErrorNotification 
+      <ErrorNotification
         errors={errorHandler.errors}
         onRemoveError={errorHandler.removeError}
         onClearAll={errorHandler.clearAllErrors}

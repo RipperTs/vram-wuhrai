@@ -251,7 +251,7 @@ export const useCalculatorStore = create<CalculatorStore>()(
 
       // 用户偏好
       preferences: {
-        autoSave: true,
+        autoSave: false,
         showOptimizationTips: true,
         defaultPrecision: 'FP16',
         theme: 'auto'
